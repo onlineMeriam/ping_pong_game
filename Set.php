@@ -13,8 +13,8 @@ class Set
         $ecart = abs($this->pointJ1 - $this->pointJ2);
         if ((($this->pointJ1 > 10) || ($this->pointJ2 > 10)) && ($ecart > 1))
             {
-                $this->est_fini = true;
                 // echo "Le set fini avec un score de ".$this->pointJ1."-".$this->pointJ2."<br>";
+                $this->est_fini = true;
             }
         return $this->est_fini; 
     } 
@@ -24,16 +24,12 @@ class Set
         $this->pointJ2 = $this->pointJ2 + $p2;
         array_push($this->listScore, $this->pointJ1,$this->pointJ2);
     }
+    
     public function initPoint()
     {
         $this->pointJ1 = 0;
         $this->pointJ2 = 0;
         array_push($this->listScore, $this->pointJ1,$this->pointJ2);
     }
-
-    /*public function getScore()
-    {
-        return (string)$this->listScore;
-    }*/
 
 }

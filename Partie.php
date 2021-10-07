@@ -3,6 +3,8 @@ class Partie
 {  
     private $est_fini = false; 
     public $set = [];
+    public $nbSetJ1 = 0;
+    public $nbSetJ2 = 0;
     public function __construct(Joueur $joueur1, Joueur $joueur2) 
     { 
         $this->joueur1 = $joueur1;
@@ -11,7 +13,7 @@ class Partie
     } 
     public function estFini(): bool 
     { 
-        if (count($this->set) > 2 )
+        if (($this->nbSetJ1 > 2) || ($this->nbSetJ2 > 2))
         {
             $this->est_fini = true ;
         }

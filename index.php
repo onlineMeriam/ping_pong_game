@@ -16,7 +16,7 @@
         $joueur2=new Joueur("Thomas");
         $partie  = new Partie($joueur1, $joueur2);
         $partie->startNouveauSet();
-        for ($i=0; $i < 80; $i++) 
+        for ($i=0; $i < 20; $i++) 
         {
             $set = $partie->getDernierSet();
             $numJoueur = rand(0,1);
@@ -24,18 +24,62 @@
             if ($numJoueur == 1) $set->addPoint(0,1);
             if (!$set->estFini()) 
             {
-                echo $joueur1->getName()." ".$set->pointJ1."  -  ".$set->pointJ2." ".$joueur2->getName()."<br>";
+              echo $joueur1->getName()." ".$set->pointJ1."  -  ".$set->pointJ2." ".$joueur2->getName()."<br>";
             }
             else 
             {
                 if (!$partie->estFini()) 
                 {
-                    echo "Le set fini avec un score de ".$set->pointJ1."-".$set->pointJ2."<br>";
-                    $partie->startNouveauSet();
+                  echo "Le set fini avec un score de ".$set->pointJ1."-".$set->pointJ2."<br>";
+                  if ($set->pointJ1 > $set->pointJ2) 
+                  {
+                    echo "Le set est gagné par : ".$joueur1->getName()."<br>";
+                    $partie->nbSetJ1 = $partie->nbSetJ1 +1;
+                  }
+                  else
+                  {
+                    echo "Le set est gagné par : ".$joueur2->getName()."<br>";
+                    $partie->nbSetJ2 = $partie->nbSetJ2 +1;
+                  }
+                  $partie->startNouveauSet();
                 }
                 
             }
         }
     ?>
+
+
+
+  <div class="container px-3">
+    <div class="row row-cols-auto">
+      <div class="col">
+        <button onclick="$set.addPoint(1,0)" id="pointJ1"> + </button>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light"><?php echo $joueur1->getName(); ?></div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light"><?php echo "  ".$set->pointJ1."     :    ".$set->pointJ2."  "; ?></div>
+      </div>
+      <div class="col">
+        <div class="p-3 border bg-light"><?php echo $joueur2->getName(); ?></div>
+      </div>
+      <div class="col">
+        <button onclick="$set.addPoint(0,1)" id="pointJ1"> + </button>
+      </div>
+    </div>
+  </div>
+
+
+<div id="board">
+        <div id="divider"></div>
+        <div id="score1" class="score">0</div>
+        <div id="score2" class="score">0</div>
+        <div id="status" class="score">Ready</div>
+        <button onclick="start()" id="start">Start</button>
+    </div>
+</div>
+
+
 </body>
 </html>
