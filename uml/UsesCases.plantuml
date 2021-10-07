@@ -1,0 +1,12 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+actor arbitre
+rectangle "Ping Pong" {
+  arbitre -- (Démarrer une partie) 
+  arbitre -- (Démarrer un set)
+  arbitre -- (Ajouter un point) 
+  arbitre -- (Gerer les joueurs)
+ 
+}
+@enduml
